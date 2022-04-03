@@ -14,8 +14,9 @@ When a courier enters to same store over 1 minute, system logs this line: "The c
 2. /travellingDistance API:
 With this API, you can see the total travelling distance of the courier. This API supports the HTTP GET method and you only need to pass courier id as path variable.
 
-You can find CourierProject-1.0-SNAPSHOT.jar in the root of the project. Download that JAR to any place you want.
-Then to run this project on your local machine, change directory to JAR location and
+You can find CourierProject-1.0-SNAPSHOT.jar in the root of the project (https://github.com/ilkgunel/CourierProject). This code written and compiled with Java 11. To run that jar, at least you have to have Java 11 at your
+machine. 
+Download that JAR to any place you want. Then to run this project on your local machine, change directory to JAR location and
 please run this command: java -jar CourierProject-1.0-SNAPSHOT.jar
 
 Here is an example JSON request to track the courier. 
