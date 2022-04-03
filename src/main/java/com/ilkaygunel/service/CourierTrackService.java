@@ -46,9 +46,11 @@ public class CourierTrackService {
                 Long trackingRequestTime = courierTrackRequest.getTrackingRequestTime();
                 if (courierEntrance == null) { //Kurye'nin hiçbir mağazaya giriş kaydı yok! Sıfırdan oluşturup koyalım
                     addFirstEntranceToSingletonMap(store.getStoreName(), trackingRequestTime, courierTrackRequest.getCourierId());
-                } else if (courierEntrance.stream().anyMatch(item -> item.keySet().contains(store.getStoreName()))) { //Kurye'nin başka mağazalara girişi kaydı var ama yaklaştığına var mı?
+                } else if (courierEntrance.stream().anyMatch(item -> item.keySet().contains(store.getStoreName()))) {
+                    /*Kurye'nin yaklaştığı mağazaya önceki girişini kontrol edelim ve gerekiyorsa güncelleyelim*/
                     updateExistingStoreEntrance(courierEntrance, trackingRequestTime, store.getStoreName(), courierTrackRequest.getCourierId());
                 } else {
+                    /*Kuryenin başka mağazalara giriş kaydı var ama yaklaştığına yok ise yaklaştığı için giriş kaydı girelim*/
                     addFirstStoreEntranceSingletonMap(store.getStoreName(), trackingRequestTime, courierTrackRequest.getCourierId(), courierEntrance);
                 }
                 logger.info("The courier {} entered radius of 100 meter of store:{}", courierTrackRequest.getCourierId(), store.getStoreName());
