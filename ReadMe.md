@@ -9,3 +9,20 @@ You can find CourierProject-1.0-SNAPSHOT.jar in the root of the project. Downloa
 Then to run this project on your local machine, change directory to JAR location and
 please run this command: java -jar CourierProject-1.0-SNAPSHOT.jar
 
+Here is an example JSON request to track the courier. 
+
+You can POST below JSON to http://localhost:8080/trackCourier
+
+{
+    "courierId":1,
+    "trackingRequestTime":1648991787604,
+    "longitude":29.1244229,
+    "latitude":40.9923307
+}
+
+Here is an example JSON request to get total travelling distance of courier. 
+
+You can call http://localhost:8080/travellingDistance/1 address with HTTP GET method  to get total travelling distance. 1 is courier id. When you started application, the code
+initiates 2 orders for courier 1 and when you call API, you will get 33 KM as total travelling distance. 
+
+
