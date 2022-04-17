@@ -37,13 +37,13 @@ public class CourierTrackService {
         //MutableBoolean ongoing = MutableBoolean.of(true); Apache Commons Lang bağımlılıklar arasında varsa bu da kullanılabilir
         AtomicReference<Boolean> bool = new AtomicReference<>(true);
         storeList.stream().takeWhile(store -> bool.get().booleanValue()).forEach(store -> {
-            double distance = geoUtils.calculateDistance(store.getStoreLatitude(), store.getStoreLongitude(), courierTrackRequest.getLatitude(), courierTrackRequest.getLongitude());
+            var distance = geoUtils.calculateDistance(store.getStoreLatitude(), store.getStoreLongitude(), courierTrackRequest.getLatitude(), courierTrackRequest.getLongitude());
             logger.info("Distance of courier to store: {}, {}", distance, store.getStoreName());
 
             if (distance <= 100) {
-                List<HashMap<String, Long>> courierEntrance = CourierEntrancesSingleton.getSingletonCourierEntrances().get(courierTrackRequest.getCourierId());
+                var courierEntrance = CourierEntrancesSingleton.getSingletonCourierEntrances().get(courierTrackRequest.getCourierId());
                 //Long trackingRequestTime = Instant.now().toEpochMilli();
-                Long trackingRequestTime = courierTrackRequest.getTrackingRequestTime();
+                var trackingRequestTime = courierTrackRequest.getTrackingRequestTime();
                 if (courierEntrance == null) { //Kurye'nin hiçbir mağazaya giriş kaydı yok! Sıfırdan oluşturup koyalım
                     addFirstEntranceToSingletonMap(store.getStoreName(), trackingRequestTime, courierTrackRequest.getCourierId());
                 } else if (courierEntrance.stream().anyMatch(item -> item.keySet().contains(store.getStoreName()))) {
