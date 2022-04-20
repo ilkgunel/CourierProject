@@ -2,7 +2,7 @@
 
 This project demonstrates a sample courier application. This project has 2 APIs.
 
-1. /trackCourier API:
+1. /couriers/track API:
 With this API, you can track and see if a courier enters 100 meters radius of a store.
 This API waits courier id, tracking request time and current longitude and latitude values of courier as request parameters. 
 Then API checks the courier entered to this store in 1 minute or not. If courier re-enters in 1 minute, 
@@ -11,7 +11,7 @@ When a courier enters to a store for the first time, system logs this line: "The
 When a courier enters to same store in 1 minute, system logs this line: "The courier entered to same store in 1 minute, this entrance is not being counted!"
 When a courier enters to same store over 1 minute, system logs this line: "The courier entered to store over 1 minute. The courier <courierId> entered radius of 100 meter of store:<storeName>"
 
-2. /travellingDistance API:
+2. /couriers/travellingDistance/{courierId} API:
 With this API, you can see the total travelling distance of the courier. This API supports the HTTP GET method and you only need to pass courier id as path variable.
 
 You can find CourierProject-1.0-SNAPSHOT.jar in the root of the project (https://github.com/ilkgunel/CourierProject). This code written and compiled with Java 11. To run that jar, at least you have to have Java 11 at your

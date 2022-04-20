@@ -22,13 +22,13 @@ public class CourierAPI {
         this.courierTravellingCalculationService = courierTravellingCalculationService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/trackCourier")
+    @RequestMapping(method = RequestMethod.POST, value = "/couriers/track")
     public ResponseEntity<String> trackCourier(@RequestBody CourierTrackRequest courierTrackRequest) throws FileNotFoundException {
         courierTrackService.checkAndLogCourierTrackRequest(courierTrackRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/travellingDistance/{courierId}")
+    @RequestMapping(method = RequestMethod.GET, value = "/couriers/travellingDistance/{courierId}")
     public ResponseEntity<Double> travellingDistance(@PathVariable Long courierId) {
         Double totalTravellingDistanceOfCourier = courierTravellingCalculationService.getTotalTravelDistance(courierId);
         return new ResponseEntity<Double>(totalTravellingDistanceOfCourier, HttpStatus.OK);
